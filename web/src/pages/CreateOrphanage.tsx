@@ -21,6 +21,7 @@ export default function CreateOrphanage() {
   const [about, setAbout] = useState('');
   const [instructions, setInstructions] = useState('')
   const [opening_hours, setOpeningHours] = useState('');
+  const [list_of_donations, setListOfDonations] = useState('')
   const [open_on_weekends, setOpenOnWeekends] = useState(true)
   const [images, setImages] = useState<File[]>([])
   const [previewImages, setPreviewImages] = useState<string[]>([]);
@@ -63,6 +64,7 @@ export default function CreateOrphanage() {
     data.append('latitude',String(latitude));
     data.append('longitude', String(longitude));
     data.append('instructions', instructions);
+    data.append('list_of_donations', list_of_donations)
     data.append('opening_hours', opening_hours);
     data.append('open_on_weekends', String(open_on_weekends));
     
@@ -124,6 +126,17 @@ export default function CreateOrphanage() {
                 onChange={event => setAbout(event.target.value)} 
                 />
             </div>
+
+            <div className="input-block">
+              <label htmlFor="about">Doações <span>Ex: Alimentos não perecíveis, roupas...</span></label>
+              <textarea 
+                id="name" 
+                maxLength={300} 
+                value={list_of_donations}
+                onChange={event => setListOfDonations(event.target.value)} 
+                />
+            </div>
+            
 
             <div className="input-block">
               <label htmlFor="images">Fotos</label>

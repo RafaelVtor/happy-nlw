@@ -11,6 +11,7 @@ export default{
             longitude,
             about,
             instructions,
+            list_of_donations,
             opening_hours,
             open_on_weekends,
             images
@@ -23,6 +24,7 @@ export default{
             longitude: longitude,
             about: about,
             instructions:instructions,
+            list_of_donations: list_of_donations,
             opening_hours: opening_hours,
             open_on_weekends: open_on_weekends,
             images: imagesView.renderMany(images)

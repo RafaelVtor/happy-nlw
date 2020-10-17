@@ -15,6 +15,7 @@ interface Orphanage{
   name: string;  
   about: string;
   instructions: string;
+  list_of_donations: string;
   opening_hours: string;
   open_on_weekends: string;
   images:Array<{
@@ -96,6 +97,9 @@ console.log(orphanage)
             </div>
 
             <hr />
+
+            <h2>Aceitamos doações:</h2>
+        <p>{ orphanage.list_of_donations }</p>
 
             <h2>Instruções para visita</h2>
             <p>

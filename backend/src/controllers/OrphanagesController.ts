@@ -33,8 +33,9 @@ export default {
             longitude,
             about,
             instructions,
+            list_of_donations,
             opening_hours,
-            open_on_weekends ,
+            open_on_weekends,
         } = req.body;
 
         const orphanagesRepository = getRepository(Orphanage);
@@ -50,6 +51,7 @@ export default {
             longitude,
             about,
             instructions,
+            list_of_donations,
             opening_hours,
             open_on_weekends: open_on_weekends === 'true',
             images
@@ -60,6 +62,7 @@ export default {
             longitude: Yup.number().required(),
             about: Yup.string().required().max(300),
             instructions: Yup.string().required(),
+            list_of_donations: Yup.string(),
             opening_hours:Yup.string().required(),
             open_on_weekends: Yup.boolean().required(),
             images:Yup.array(Yup.object().shape({
@@ -71,7 +74,7 @@ export default {
             abortEarly:false,
         })
         const orphanage = orphanagesRepository.create(data);
-
+        console.log(orphanage)
         await orphanagesRepository.save(orphanage)
 
         return res.status(201).json(orphanage)
