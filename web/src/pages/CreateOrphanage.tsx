@@ -16,6 +16,7 @@ export default function CreateOrphanage() {
   const history = useHistory()
   
   const [position, setPosition] = useState({latitude:0, longitude:0})
+  const [currentUserPosition, setCurrentUserPosition] = useState({latitude: 0, longitude: 0})
   
   const [name, setName] = useState('');
   const [about, setAbout] = useState('');
@@ -26,6 +27,7 @@ export default function CreateOrphanage() {
   const [images, setImages] = useState<File[]>([])
   const [previewImages, setPreviewImages] = useState<string[]>([]);
   
+  handleCurrentUserPosition()
 
   function handleMapClick(event:LeafletMouseEvent){
     const {lat, lng} = event.latlng
@@ -51,6 +53,17 @@ export default function CreateOrphanage() {
 
     setPreviewImages(selectedImagesPreview)
   }
+
+   function handleCurrentUserPosition(){
+        if('geolocation' in navigator){
+            navigator.geolocation.getCurrentPosition(position=>{
+                setCurrentUserPosition({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                })
+            })
+        }
+    }
   
   async function handleSubmit(event: FormEvent){
     event.preventDefault();
@@ -91,7 +104,7 @@ export default function CreateOrphanage() {
             <legend>Dados</legend>
 
             <Map 
-              center={[-12.9709172,-38.4568543]} 
+              center={[currentUserPosition.latitude,currentUserPosition.longitude]} 
               style={{ width: '100%', height: 280 }}
               zoom={12}
               onclick={handleMapClick}
